@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OOSPrinterBridge": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "INCREMENT_VERSION": "TRUE"
+      }
+    }
+  }
+}
