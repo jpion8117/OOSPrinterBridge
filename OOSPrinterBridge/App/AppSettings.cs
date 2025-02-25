@@ -19,6 +19,9 @@ namespace OOSPrinterBridge.App
         [JsonIgnore]
         public static string CopyYear { get; set; } = string.Empty;
 
+        [JsonIgnore]
+        public static string DataDirectory { get; set; } = string.Empty;
+
         [JsonConstructor]
         public AppSettings() 
         {
@@ -27,12 +30,12 @@ namespace OOSPrinterBridge.App
 
         private AppSettings(string filename)
         {
-            _filename = filename;
+            _filename = Path.Combine(DataDirectory, filename);
         }
 
-        public static AppSettings Initialize(string filename = "appsettings.json")
+        public static AppSettings Initialize(string filename = "OOSPrintBridge.ooscfg")
         {
-            var settings = new AppSettings(filename);
+            var settings = new AppSettings(Path.Combine(DataDirectory, filename));
             settings.Load();
 
             return settings;

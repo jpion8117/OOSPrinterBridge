@@ -5,11 +5,17 @@ using System.Text;
 
 const string majorVersion = "0";
 const string minorVersion = "1";
-const string patch = "4";
+const string patch = "7";
 const string copyYear = "2025";
 
 AppSettings.Version = $"{majorVersion}.{minorVersion}.{patch}";
-AppSettings.CopyYear = copyYear;    
+AppSettings.CopyYear = copyYear;
+
+var home = Environment.GetEnvironmentVariable("HomePath") ?? "";
+AppSettings.DataDirectory = Path.Combine(home, "AppData", "Roaming", "Open Order System");
+
+if (!Directory.Exists(AppSettings.DataDirectory))
+    Directory.CreateDirectory(AppSettings.DataDirectory);
 
 Console.OutputEncoding = Encoding.Unicode;
 Console.Title = $"Open Order System - Printer Bridge {AppSettings.Version}";
